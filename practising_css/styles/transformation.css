@@ -1,0 +1,12 @@
+.circle {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: aquamarine;
+  transition: all 1s;
+}
+.circle:hover {
+  background-color: beige;
+  transform: rotateZ(180deg);
+  border: 1px solid black;
+}

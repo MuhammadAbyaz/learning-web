@@ -1,0 +1,15 @@
+nav {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  border-bottom: 2px solid #f1f1f1;
+  width: 30%;
+  margin-left: 1.6666%;
+  padding: 1em 0px;
+  text-transform: uppercase;
+}
+
+img {
+  margin: 1.6666%;
+  width: 30%;
+}

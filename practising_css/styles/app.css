@@ -1,0 +1,40 @@
+root {
+  --dark-blue: #3d405b;
+}
+
+h1,
+h2 {
+  color: var(--dark-blue);
+  text-align: center;
+}
+button {
+  background-color: #fca311;
+  border-radius: 50px;
+  font-size: 20px;
+  width: 100px;
+  height: 50px;
+}
+#login {
+  background-color: #14213d;
+  color: #ffffff;
+}
+.tag {
+  background-color: #778da9;
+  font-size: 15px;
+  padding: 10px;
+  color: #fca311;
+  border-radius: 50px;
+}
+
+span a {
+  color: #fca311;
+}
+
+input[type="text"] {
+  color: aqua;
+}
+
+button:hover {
+  background-color: #bde0fe;
+  color: #14213d;
+}
