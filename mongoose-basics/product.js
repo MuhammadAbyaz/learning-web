@@ -32,8 +32,28 @@ const productSchema = new mongoose.Schema({
             type: Number,
             default: 0
         }
+    },
+    size: {
+        type: String,
+        enum: ["S","M","L"] 
     }
 })
+// instance methods
+productSchema.methods.greet = function(){
+    console.log("Hello hi")
+    console.log(`- from ${this.name}`)
+}
+productSchema.methods.toggleOnSale = function(){
+    this.onSale = !this.onSale;
+    this.save()
+}
+productSchema.methods.addCategory = function(newCat){
+    this.categories.push(newCat);
+    return this.categories.save()
+}
+productSchema.statics.fireSale = function(){
+    return this.updateMany({},{onSale: true, price: 0})
+}
 const Product = mongoose.model("Product", productSchema)
 const bike = new Product({
     name: "Mountain Bike",
