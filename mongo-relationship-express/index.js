@@ -1,4 +1,6 @@
 const express = require("express");
+const session = require("express-session");
+const flash = require("connect-flash");
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
@@ -15,17 +17,25 @@ mongoose
     console.log("Oh no error occurred");
     console.log(err);
   });
-
+app.use(
+  session({
+    secret: "Thisismysecret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 const categories = ["Fruit", "Vegetable", "Dairy"];
-
+app.use((req, res, next) => {
+  res.locals.messages = req.flash("success");
+});
 // Farm Routes
 app.get("/farms", async (req, res) => {
   const farms = await Farm.find({});
-  res.render("farms/index", { farms });
+  res.render("farms/index", { farms, messages: req.flash("success") });
 });
 app.get("/farms/new", (req, res) => {
   res.render("farms/new");
@@ -56,6 +66,7 @@ app.post("/farms/:id/products", async (req, res) => {
 app.post("/farms", async (req, res) => {
   const farm = Farm(req.body);
   await farm.save();
+  req.flash("success", "Successfly created the farm");
   res.redirect("/farms");
 });
 
